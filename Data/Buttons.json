@@ -1,0 +1,45 @@
+/**
+ * This file is JS file rather than a JSON one because javascript does not 
+ * have the permission to access local files normally, but we can work around
+ * that by making this file actually parse the JSON rather than a different file
+ */
+ 
+ /**
+  * Backtick is some sort of ECMAScript 6 voodoo shit to allow multilined strings
+  */
+var ButtonJSON = `
+[
+    {
+        "Description": "Play Button",
+        "Visible": true,
+        "X": 0,
+        "Y": 0,
+        "Width": 300,
+        "Height": 300,
+        "Parent": null,
+        "Pressed": false,
+        "Fill": {
+            "On": true,
+            "Colour": "White",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": true,
+            "Colour": "White",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "Play Game",
+            "Font": "Georgia",
+            "Size": 32
+        }
+    }
+]
+`;
+ 
+var Buttons=JSON.parse(ButtonJSON);
