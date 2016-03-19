@@ -2,7 +2,8 @@ var ModelSet = [
     [0, 1],
     [2, 3, 4, 5],
     [6],
-    [7, 8]
+    [7, 8],
+    [9, 10, 11, 12, 13, 14]
 ];
 
 var AI_Type = {
@@ -139,6 +140,10 @@ function drawEntities(dt) {
             if (e.LastModelUpdate + e.AnimationSpeed < now) {
                 if (++e.CurrentModel > ModelSet[e.ModelSet].length - 1) {
                     e.CurrentModel = 0;
+                    if (e.Description === "Explosion") {
+                        Entities.splice(i, 1);
+                        return;
+                    }
                 }
                 e.LastModelUpdate = now;
             }
@@ -207,7 +212,7 @@ function checkCollisions(dt) {
     if (lastCollissionCheck + 50 < now) {
         Entities.forEach(function(e1, i1) {
             Entities.forEach(function(e2, i2) {
-                if ((i1 !== i2) && (e1.Group !== e2.Group) && (e1.State === AI_State.Alive) && (e2.State === AI_State.Alive)) {
+                if ((i1 !== i2) && (e1.Group !== e2.Group) && (e1.State === AI_State.Alive) && (e2.State === AI_State.Alive) && (e1.Physics.Collision) && (e2.Physics.Collision)) {
                     var xDistance = e1.X - e2.X;
                     var yDistance = e1.Y - e2.Y;
                     var Distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
@@ -272,11 +277,15 @@ function handleCollision(e1, e2) {
 }
 
 function killEntity(e) {
+    var ID = Entities.push(JSON.parse(JSON.stringify(Entities[4]))) - 1;
+    Entities[ID].State = 1;
+    Entities[ID].X = e.X;
+    Entities[ID].Y = e.Y + (scene.Tile_Size * 2);
+                    
     if (e.Description === "Player") {
         alert('game over');
         location.reload();
     } else {
-        console.log(e);
         Entities.forEach(function(eN, i) {
             if (eN === e) {
                 Entities.splice(i, 1);

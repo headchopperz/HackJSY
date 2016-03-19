@@ -137,6 +137,38 @@ var EntityJSON = `
             "lastBulletShot": 0,
             "nextBulletShot": 0
         }
+    }, {
+        "Description": "Explosion",
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
+        "old_X": 0,
+        "old_Y": 0,        
+        "ModelSet": 4,
+        "CurrentModel": 0,
+        "AIType": 0,
+        "Group": 0,
+        "Hardness": 0,
+        "LastModelUpdate": 0,
+        "AnimationSpeed": 250,
+        "State": 0,
+        "Physics": {
+            "On": false,
+            "Collision": false,
+            "MaxSpeed": 0,
+            "Drag": 0,
+            "Thrust": 0,
+            "Velocity": {
+                "X": 0,
+                "Y": 0
+            }
+        },
+        "AI": {
+            "SinWave": 0,
+            "LastShoot": 0,
+            "lastBulletShot": 0,
+            "nextBulletShot": 0
+        }
     }
 ]
 `;

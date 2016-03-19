@@ -68,6 +68,48 @@ var ModelJSON = `
     ],
     [
         ["yellow", "white"]
+    ],
+    [
+        [null,    null,    null,    null,    null],
+        [null,    null,    "yellow",    null,    null],
+        [null,    "yellow",    "orange",    "yellow",    null],
+        [null,    null,    "yellow",    null,    null],
+        [null,    null,    null,    null,    null]
+    ],
+    [
+        [null,    null,    "yellow",    null,    null],
+        [null,    null,    "orange",    null,    null],
+        ["yellow",    "orange",    "red",    "orange",    "yellow"],
+        [null,    null,    "orange",    null,    null],
+        [null,    null,    "yellow",    null,    null]
+    ],
+    [
+        [null,    null,    "orange",    null,    null],
+        [null,    "yellow",    "red",    "yellow",    null],
+        ["orange",    "red",    "black",    "red",    "orange"],
+        [null,    "yellow",    "red",    "yellow",    null],
+        [null,    null,    "orange",    null,    null]
+    ],
+    [
+        [null,    null,    "red",    null,    null],
+        [null,    "orange",    "black",    "orange",    null],
+        ["red",    "black",    null,    "black",    "red"],
+        [null,    "orange",    "black",    "orange",    null],
+        [null,    null,    "red",    null,    null]
+    ],
+    [
+        [null,    null,    "yellow",    null,    null],
+        [null,    "yellow",    null,    "yellow",    null],
+        ["yellow",    null,    null,    null,    "yellow"],
+        [null,    "yellow",    null,    "yellow",    null],
+        [null,    null,    "yellow",    null,    null]
+    ],
+    [
+        [null,    null,    "white",    null,    null],
+        [null,    "white",    null,    "white",    null],
+        ["white",    null,    null,    null,    "white"],
+        [null,    "white",    null,    "white",    null],
+        [null,    null,    "white",    null,    null]
     ]
 ]
 `;
