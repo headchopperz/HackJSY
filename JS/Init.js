@@ -25,6 +25,15 @@ var scene = {
     Offset: {
         X: 0,
         Y: 0
-    }
-    
+    }    
 };
+
+/**
+ * This object stores the current mouse state
+ * @type (Object)
+ */
+var _mouse = {
+    X: 0,
+    Y: 0,
+    Down: false
+}

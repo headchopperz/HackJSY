@@ -97,3 +97,6 @@ function sync(dt) {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+$(document).ready(function() {
+    requestAnimFrame(main);
+});

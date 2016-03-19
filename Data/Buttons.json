@@ -12,12 +12,13 @@ var ButtonJSON = `
     {
         "Description": "Play Button",
         "Visible": true,
-        "X": 0,
-        "Y": 0,
+        "X": 600,
+        "Y": 250,
         "Width": 300,
-        "Height": 300,
+        "Height": 100,
         "Parent": null,
         "Pressed": false,
+        "Centered": true,
         "Fill": {
             "On": true,
             "Colour": "Black",
@@ -36,7 +37,7 @@ var ButtonJSON = `
             "Outline": false,
             "Value": "Play Game",
             "Font": "Georgia",
-            "Size": 32
+            "Size": 42
         },
         "TextBox": {
             "On": false,
