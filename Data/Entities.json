@@ -65,6 +65,34 @@ var EntityJSON = `
             "SinWave": 0,
             "LastShoot": 0
         }
+    }, {
+        "Description": "Boulder 1",
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
+        "old_X": 0,
+        "old_Y": 0,        
+        "ModelSet": 2,
+        "CurrentModel": 0,
+        "AIType": 2,
+        "LastModelUpdate": 0,
+        "AnimationSpeed": 100,
+        "State": 0,
+        "Physics": {
+            "On": true,
+            "Collision": true,
+            "MaxSpeed": 1,
+            "Drag": 0.0006,
+            "Thrust": 0.0033,
+            "Velocity": {
+                "X": 0,
+                "Y": 0
+            }
+        },
+        "AI": {
+            "SinWave": 0,
+            "LastShoot": 0
+        }
     }
 ]
 `;

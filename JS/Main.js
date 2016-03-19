@@ -1,5 +1,3 @@
-var lastShip = 0;
-
 function mainLoop(dt) {
     var now = Date.now();
     
@@ -18,10 +16,5 @@ function mainLoop(dt) {
 
     Entities[0].Physics.Velocity.X -= (0.0018 * (Entities[0].X / scene.Viewport.Width)) * dt;
     
-    if (lastShip + 1500 < now) {
-        var ID = Entities.push(JSON.parse(JSON.stringify(Entities[1]))) - 1; 
-        Entities[ID].State = 1;
-        lastShip = now;
-        
-    }
+    handleAISpawning(dt);
 }

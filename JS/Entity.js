@@ -1,11 +1,13 @@
 var ModelSet = [
     [0, 1],
-    [2, 3, 4, 5]
+    [2, 3, 4, 5],
+    [6]
 ];
 
 var AI_Type = {
     None: 0,
-    SinWaveShooter: 1
+    SinWaveShooter: 1,
+    Boulder: 2
 }
 
 var AI_State = {
@@ -151,8 +153,10 @@ function controlEntities(dt) {
                  e.Physics.Velocity.X = 0.05;
                  */
                 e.Y = oY;
-                e.Physics.Velocity.X = 0.005 * dt;
+                e.Physics.Velocity.X = 0.01 * dt;
 
+            } else if (e.AIType === AI_Type.Boulder) {
+                e.Physics.Velocity.X = -(0.01 * dt);
             }
         }
     });
