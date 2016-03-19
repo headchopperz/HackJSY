@@ -20,12 +20,12 @@ var ButtonJSON = `
         "Pressed": false,
         "Fill": {
             "On": true,
-            "Colour": "White",
+            "Colour": "Black",
             "Pressed": "White"
         },
         "Outline": {
             "On": true,
-            "Colour": "White",
+            "Colour": "Black",
             "Pressed": "White"
         },
         "Text": {
@@ -37,6 +37,13 @@ var ButtonJSON = `
             "Value": "Play Game",
             "Font": "Georgia",
             "Size": 32
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true
         }
     }
 ]
