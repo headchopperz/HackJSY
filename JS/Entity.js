@@ -182,8 +182,6 @@ function controlEntities(dt) {
         
                     e.AI.lastBulletShot = now;
                     e.AI.nextBulletShot = 500 + Math.random() * 4000;
-                    
-                    console.log('SHOT BULLET')
                 }
 
 
@@ -259,7 +257,18 @@ function checkCollisions(dt) {
 }
 
 function handleCollision(e1, e2) {
-    killEntity(((e1.Hardness < e2.Hardness) ? e1 : e2));
+    //im too tired to do this better
+    if (e1.Hardness < e2.Hardness) {
+        killEntity(e1);
+        if (e2.AIType === AI_Type.Bullet) {
+            killEntity(e2);
+        }
+    } else {
+        killEntity(e2);
+        if (e1.AIType === AI_Type.Bullet) {
+            killEntity(e1);
+        }
+    }
 }
 
 function killEntity(e) {

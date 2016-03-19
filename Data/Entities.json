@@ -21,7 +21,7 @@ var EntityJSON = `
         "CurrentModel": 0,
         "AIType": 0,
         "Group": 1,
-        "Hardness": 0,
+        "Hardness": 1,
         "LastModelUpdate": 0,
         "AnimationSpeed": 500,
         "Physics": {
@@ -52,7 +52,7 @@ var EntityJSON = `
         "CurrentModel": 0,
         "AIType": 1,
         "Group": 2,
-        "Hardness": 1,
+        "Hardness": 0,
         "LastModelUpdate": 0,
         "AnimationSpeed": 100,
         "State": 0,

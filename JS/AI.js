@@ -13,6 +13,16 @@ function handleAISpawning(dt) {
         _aiSpawn.cShipSpawn = 1;
         _aiSpawn.ShipFleetStart = Math.random() * 360;
         _aiSpawn.lastShipFleet = now;
+        
+        Entities.forEach(function(e, i) {
+            if ((e.Group === AI_Group.Boulder) && (e.X < 400)) {
+                var ID = Entities.push(JSON.parse(JSON.stringify(Entities[3]))) - 1;
+                Entities[ID].State = 1;
+                Entities[ID].X = 0;
+                Entities[ID].Y = e.Y + (scene.Tile_Size * 4);
+                Entities[ID].Physics.Velocity.X = 1;
+            }
+        });
     }
     
     

@@ -45,3 +45,5 @@ var _mouse = {
  * @type (Object)
  */
 var SelectedButton = null;
+
+var GameStart = Date.now();

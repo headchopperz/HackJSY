@@ -79,6 +79,7 @@ function main() {
             drawAtmosphere(dt);
             drawEntities(dt);
             mainLoop(dt);
+            showScore(dt);
         } else {
             sync(dt);
             drawButtons(dt);
@@ -101,6 +102,7 @@ function main() {
  */
 function playGame(e) {
     menu = false;
+    GameStart = Date.now();
 }
 
 function drawdebug() {
@@ -109,6 +111,15 @@ function drawdebug() {
     context.fillStyle = "white";
     context.fillText("X: " + _mouse.X,2,15);
     context.fillText("Y: " + _mouse.Y,2,35);
+}
+
+function showScore() {
+    var now = Date.now();
+    
+    context.textAlign = 'right';
+    context.font = "24px monospace";
+    context.fillStyle = "white";
+    context.fillText(Math.floor((now - GameStart) / 5),scene.Viewport.Width - 15,30);
 }
 
 /**
