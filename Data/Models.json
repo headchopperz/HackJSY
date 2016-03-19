@@ -28,6 +28,30 @@ var ModelJSON = `
         ["white", null,    "white", "white", null,    null,    "white", "white", null,    "white"],
         [null,    null,    null,    "white", "white", "white", "white", null,    null,    null],
         [null,    null,    "white",    null, null,    null,    null,    "white", null,    null]
+    ],
+    [
+        ["white", null,    null,    null],
+        ["white", "white", null,    null],
+        ["white",    "yellow", "white", "white"],
+        ["white",  "white",  "white", null]
+    ],
+    [
+        ["white", null,    null,    null],
+        ["white", "white", null,    null],
+        ["white",    "pink", "white", "white"],
+        ["white",  "white",  "white", null]
+    ],
+    [
+        ["white", null,    null,    null],
+        ["white", "white", null,    null],
+        ["white",    "red",   "white", "white"],
+        ["white",  "white",  "white", null]
+    ],
+    [
+        ["white", null,    null,    null],
+        ["white", "white", null,    null],
+        ["white",    "orange","white", "white"],
+        ["white",  "white",  "white", null]
     ]
 ]
 `;

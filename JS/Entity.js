@@ -1,5 +1,6 @@
 var ModelSet = [
-    [0, 1]
+    [0, 1],
+    [2, 3, 4, 5]
 ];
 
 var _entity = {
@@ -27,7 +28,7 @@ var _entity = {
 }
 
 if (typeof Entities === "undefined") {
-    var Entities = new array();
+    var Entities = new Array();
 } else {
     /**
      * Buttons loaded from JSON will not have any of the default functions set
@@ -39,56 +40,63 @@ if (typeof Entities === "undefined") {
 
 function drawEntities(dt) {
     var now = Date.now();
-    
+
     Entities.forEach(function(e) {
-        
+
         if ((e.Physics.Velocity.Y !== 0) || (e.Physics.Velocity.X !== 0)) {
-            
+
             if (e.Physics.Velocity.X > e.Physics.MaxSpeed) {
                 e.Physics.Velocity.X = e.Physics.MaxSpeed;
             } else if (e.Physics.Velocity.X < -e.Physics.MaxSpeed) {
                 e.Physics.Velocity.X = -e.Physics.MaxSpeed;
             }
-            
+
             if (e.Physics.Velocity.Y > e.Physics.MaxSpeed) {
                 e.Physics.Velocity.Y = e.Physics.MaxSpeed;
             } else if (e.Physics.Velocity.Y < -e.Physics.MaxSpeed) {
                 e.Physics.Velocity.Y = -e.Physics.MaxSpeed;
             }
-            
+
             e.X += e.Physics.Velocity.X * dt;
             e.Y += e.Physics.Velocity.Y * dt;
-            
-            if (e.X > scene.Viewport.Width) {
-                e.X = 0;
-            } else if (e.X < 0) {
-                e.X = scene.Viewport.Width;
+
+            if (e.Description === "Player") {
+                if (e.Y > scene.Viewport.Height) {
+                    e.Y = 0;
+                } else if (e.Y < 0) {
+                    e.Y = scene.Viewport.Height;
+                }
+                if (e.X > scene.Viewport.Width - (10 * scene.Tile_Size)) {
+                    e.X = scene.Viewport.Width - (10 * scene.Tile_Size);
+                } else if (e.X < 0) {
+                    e.X = 0;
+                }
             }
-            
+
             var DragWeight = (e.Physics.Drag * dt);
-            
+
             if ((e.Physics.Velocity.X < DragWeight) && (e.Physics.Velocity.X > -DragWeight)) {
                 e.Physics.Velocity.X = 0;
             } else {
                 e.Physics.Velocity.X -= ((e.Physics.Velocity.X < 0) ? -DragWeight : DragWeight);
             }
-            
+
             if ((e.Physics.Velocity.Y < DragWeight) && (e.Physics.Velocity.Y > -DragWeight)) {
                 e.Physics.Velocity.Y = 0;
             } else {
                 e.Physics.Velocity.Y -= ((e.Physics.Velocity.Y < 0) ? -DragWeight : DragWeight);
             }
         }
-        
+
         if (e.LastModelUpdate + e.AnimationSpeed < now) {
             if (++e.CurrentModel > ModelSet[e.ModelSet].length - 1) {
                 e.CurrentModel = 0;
             }
             e.LastModelUpdate = now;
         }
-        
+
         var ModelID = ModelSet[e.ModelSet][e.CurrentModel];
-        
+
         for (var Ey = 0; Ey < Models[ModelID].length; Ey++) {
             for (var Ex = 0; Ex < Models[ModelID][Ey].length; Ex++) {
                 var ModelInfo = Models[ModelID][Ey][Ex];

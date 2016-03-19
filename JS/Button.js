@@ -117,7 +117,7 @@ var _button = {
 }
 
 if (typeof Buttons === "undefined") {
-    var Buttons = new array();
+    var Buttons = new Array();
 } else {
     /**
      * Buttons loaded from JSON will not have any of the default functions set

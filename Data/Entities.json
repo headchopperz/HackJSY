@@ -15,11 +15,35 @@ var EntityJSON = `
         "Y": 100,
         "Z": 0,
         "old_X": 100,
-        "old_Y": 100,        
+        "old_Y": 100,    
+        "Living": true,    
         "ModelSet": 0,
         "CurrentModel": 0,
         "LastModelUpdate": 0,
         "AnimationSpeed": 500,
+        "Physics": {
+            "On": true,
+            "Collision": true,
+            "MaxSpeed": 1,
+            "Drag": 0.0006,
+            "Thrust": 0.0033,
+            "Velocity": {
+                "X": 0,
+                "Y": 0
+            }
+        }
+    }, {
+        "Description": "Earth Ship",
+        "X": 200,
+        "Y": 200,
+        "Z": 0,
+        "old_X": 200,
+        "old_Y": 200,        
+        "ModelSet": 1,
+        "CurrentModel": 0,
+        "LastModelUpdate": 0,
+        "AnimationSpeed": 100,
+        "Living": false,
         "Physics": {
             "On": true,
             "Collision": true,

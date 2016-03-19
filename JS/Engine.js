@@ -74,6 +74,7 @@ function main() {
         if (!menu) {
             //checkmovementetc
             sync(dt);
+            drawAtmosphere(dt);
             drawEntities(dt);
             mainLoop(dt);
         } else {
