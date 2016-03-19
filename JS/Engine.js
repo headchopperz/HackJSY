@@ -72,7 +72,9 @@ function main() {
          */
         
         if (!menu) {
+            //checkmovementetc
             sync(dt);
+            drawEntities(dt);
             mainLoop(dt);
         } else {
             sync(dt);
@@ -91,8 +93,11 @@ function main() {
     
 }
 
+/**
+ * 
+ */
 function playGame(e) {
-    console.log(e);
+    menu = false;
 }
 
 function drawdebug() {

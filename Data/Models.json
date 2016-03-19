@@ -1,0 +1,35 @@
+/**
+ * This file is JS file rather than a JSON one because javascript does not 
+ * have the permission to access local files normally, but we can work around
+ * that by making this file actually parse the JSON rather than a different file
+ */
+ 
+ /**
+  * Backtick is some sort of ECMAScript 6 voodoo shit to allow multilined strings
+  */
+var ModelJSON = `
+[
+    [
+        [null,    null,    "white", null,    null,    null,    null,    "white", null,    null],
+        [null,    null,    null,    "white", "white", "white", "white", null,    null,    null],
+        [null,    null,    "white", "white", "white", "white", "white", "white", null,    null],
+        ["white", null,    "white", null,    "white", "white", null,    "white", null,    "white"],
+        [null,    "white", "white", "white", "white", "white", "white", "white", "white", null],
+        [null,    null,    "white", null,    null,    null,    null,    "white", null,    null],
+        [null,    null,    null,    "white", "white", "white", "white", null,    null,    null],
+        [null,    null,    null,    "white", null,    null,    "white", null,    null,    null]
+    ],
+    [
+        [null,    null,    "white", null,    null,    null,    null,    "white", null,    null],
+        [null,    null,    null,    "white", "white", "white", "white", null,    null,    null],
+        [null,    null,    "white", "white", "white", "white", "white", "white", null,    null],
+        [null,    null,    "white", null,    "white", "white", null,    "white", null,    null],
+        [null,    "white", "white", "white", "white", "white", "white", "white", "white", null],
+        ["white", null,    "white", "white", null,    null,    "white", "white", null,    "white"],
+        [null,    null,    null,    "white", "white", "white", "white", null,    null,    null],
+        [null,    null,    "white",    null, null,    null,    null,    "white", null,    null]
+    ]
+]
+`;
+ 
+var Models=JSON.parse(ModelJSON);
