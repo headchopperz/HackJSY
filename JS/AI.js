@@ -9,7 +9,7 @@ var _aiSpawn = {
 function handleAISpawning(dt) {
     var now = Date.now();
     
-    if ((_aiSpawn.cShipSpawn === 0) && (_aiSpawn.lastShipFleet + 20000  - Math.floor(getScore() / 100) < now)) {
+    if ((_aiSpawn.cShipSpawn === 0) && (_aiSpawn.lastShipFleet + (20000  / Math.floor(getScore() / 5000)) < now)) {
         _aiSpawn.cShipSpawn = 1;
         _aiSpawn.ShipFleetStart = Math.random() * 360;
         _aiSpawn.lastShipFleet = now;
@@ -41,7 +41,7 @@ function handleAISpawning(dt) {
         _aiSpawn.lastShipFleetShip = now;
     }
     
-    if (_aiSpawn.lastBoulder + 3000 - (getScore() / 10) < now ) {
+    if (_aiSpawn.lastBoulder + (3000 / (getScore() / 1000)) < now ) {
         var ID = Entities.push(JSON.parse(JSON.stringify(Entities[2]))) - 1;
         Entities[ID].State = 1;
         Entities[ID].X = scene.Viewport.Width;
