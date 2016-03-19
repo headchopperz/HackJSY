@@ -73,6 +73,7 @@ function main() {
         
         if (!menu) {
             //checkmovementetc
+            controlEntities(dt);
             sync(dt);
             drawAtmosphere(dt);
             drawEntities(dt);
