@@ -1,5 +1,5 @@
 var _aiSpawn = {
-    lastShipFleet: 0,
+    lastShipFleet: Date.now(),
     lastShipFleetShip: 0,
     ShipFleetStart: 0,
     cShipSpawn: 0,
@@ -9,7 +9,7 @@ var _aiSpawn = {
 function handleAISpawning(dt) {
     var now = Date.now();
     
-    if ((_aiSpawn.cShipSpawn === 0) && (_aiSpawn.lastShipFleet + 15000 < now)) {
+    if ((_aiSpawn.cShipSpawn === 0) && (_aiSpawn.lastShipFleet + 20000  - Math.floor(getScore() / 100) < now)) {
         _aiSpawn.cShipSpawn = 1;
         _aiSpawn.ShipFleetStart = Math.random() * 360;
         _aiSpawn.lastShipFleet = now;
@@ -20,7 +20,7 @@ function handleAISpawning(dt) {
                 Entities[ID].State = 1;
                 Entities[ID].X = 0;
                 Entities[ID].Y = e.Y + (scene.Tile_Size * 4);
-                Entities[ID].Physics.Velocity.X = 1;
+                Entities[ID].Physics.Velocity.X = 1 * getScore() / 15000;
             }
         });
     }
@@ -34,14 +34,14 @@ function handleAISpawning(dt) {
         Entities[ID].AI.lastBulletShot = now;
         Entities[ID].AI.nextBulletShot = Math.random() * 1000;
         
-        if (_aiSpawn.cShipSpawn++ > 1 + Math.round((Math.random() * 3))) {
+        if (_aiSpawn.cShipSpawn++ > 1 + Math.round((Math.random() * (getScore() / 5000)))) {
             _aiSpawn.cShipSpawn = 0;
         }
         
         _aiSpawn.lastShipFleetShip = now;
     }
     
-    if (_aiSpawn.lastBoulder + 1500 < now) {
+    if (_aiSpawn.lastBoulder + 3000 - (getScore() / 10) < now ) {
         var ID = Entities.push(JSON.parse(JSON.stringify(Entities[2]))) - 1;
         Entities[ID].State = 1;
         Entities[ID].X = scene.Viewport.Width;

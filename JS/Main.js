@@ -1,5 +1,6 @@
 function mainLoop(dt) {
     var now = Date.now();
+    score = (Math.floor((now - GameStart) / 5));
     
     if (getKeyPressed(KEY.RIGHT_ARROW) || getKeyPressed(KEY.D)) {
         Entities[0].Physics.Velocity.X += Entities[0].Physics.Thrust * dt;

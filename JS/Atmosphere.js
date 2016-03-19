@@ -11,13 +11,14 @@ var Dashes = new Array();
 
 var lastAtmosphereDraw = 0;
 
+var lineAm = 5;
 
 function drawAtmosphere() {
     var now = Date.now();
     
-    var lineAm = 20;
-
-    if (lastAtmosphereDraw + 320 < now) {
+    if (lastAtmosphereDraw + 320 - (score / 500) < now) {
+        
+        lineAm = 5 + (score / 100);
 
         Dashes = new Array();
 
@@ -35,16 +36,17 @@ function drawAtmosphere() {
 
     for (var i = 0; i < lineAm; i++) {
 
-        context.beginPath();
-        context.fillStyle = "#eee";
+        if (typeof Dashes[i] !== "undefined") {
+            context.beginPath();
+            context.fillStyle = "#eee";
 
-        context.moveTo(Dashes[i].X, Dashes[i].Y);
-        context.lineTo(Dashes[i].X + Dashes[i].Width, Dashes[i].Y);
+            context.moveTo(Dashes[i].X, Dashes[i].Y);
+            context.lineTo(Dashes[i].X + Dashes[i].Width, Dashes[i].Y);
 
-        context.lineWidth = Dashes[i].Height;
-        context.strokeStyle = 'rgb(' + Dashes[i].Colour + ',' + Dashes[i].Colour + ',' + Dashes[i].Colour + ')';
-        context.stroke();
-
+            context.lineWidth = Dashes[i].Height;
+            context.strokeStyle = 'rgb(' + Dashes[i].Colour + ',' + Dashes[i].Colour + ',' + Dashes[i].Colour + ')';
+            context.stroke();
+        }
     }
 
 }

@@ -119,7 +119,7 @@ function showScore() {
     context.textAlign = 'right';
     context.font = "24px monospace";
     context.fillStyle = "white";
-    context.fillText(Math.floor((now - GameStart) / 5),scene.Viewport.Width - 15,30);
+    context.fillText(getScore(),scene.Viewport.Width - 15,30);
 }
 
 /**
@@ -217,3 +217,7 @@ $(document).ready(function() {
     
     requestAnimFrame(main);
 });
+
+function getScore() {
+    return score;
+}

@@ -174,7 +174,7 @@ function controlEntities(dt) {
 
                 var ModelHeight = Models[ModelSet[e.ModelSet][e.CurrentModel]].length * scene.Tile_Size;
 
-                e.AI.SinWave += 0.004 * dt;
+                e.AI.SinWave += 0.002 * dt;
                 var oY = ((scene.Viewport.Height - ModelHeight) / 2) + (Math.sin(e.AI.SinWave) * ((scene.Viewport.Height - ModelHeight) / 2));
 
 
@@ -183,7 +183,7 @@ function controlEntities(dt) {
                     Entities[ID].State = 1;
                     Entities[ID].X = e.X;
                     Entities[ID].Y = e.Y + (scene.Tile_Size * 2);
-                    Entities[ID].Physics.Velocity.X = 1;
+                    Entities[ID].Physics.Velocity.X = 1 * (getScore() / 15000);
         
                     e.AI.lastBulletShot = now;
                     e.AI.nextBulletShot = 500 + Math.random() * 4000;
@@ -200,7 +200,7 @@ function controlEntities(dt) {
                 e.Physics.Velocity.X = 0.01 * dt;
 
             } else if (e.AIType === AI_Type.Boulder) {
-                e.Physics.Velocity.X = -0.15;
+                e.Physics.Velocity.X = -(0.05 * (getScore() / 750));
             }
         }
     });

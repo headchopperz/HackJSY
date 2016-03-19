@@ -47,3 +47,5 @@ var _mouse = {
 var SelectedButton = null;
 
 var GameStart = Date.now();
+var cTime = Date.now();
+var score = 0;
