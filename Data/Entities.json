@@ -23,7 +23,13 @@ var EntityJSON = `
         "Physics": {
             "On": true,
             "Collision": true,
-            "Speed": 1
+            "MaxSpeed": 1,
+            "Drag": 0.0006,
+            "Thrust": 0.0033,
+            "Velocity": {
+                "X": 0,
+                "Y": 0
+            }
         }
     }
 ]

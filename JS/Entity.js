@@ -16,7 +16,13 @@ var _entity = {
     Physics: {
         On: false,
         Collision: false,
-        Speed: 1
+        MaxSpeed: 1,
+        Drag: 0.10,
+        Thrust: 0.33,
+        Velocity: {
+            X: 0,
+            Y: 0
+        }
     }
 }
 
@@ -35,6 +41,44 @@ function drawEntities(dt) {
     var now = Date.now();
     
     Entities.forEach(function(e) {
+        
+        if ((e.Physics.Velocity.Y !== 0) || (e.Physics.Velocity.X !== 0)) {
+            
+            if (e.Physics.Velocity.X > e.Physics.MaxSpeed) {
+                e.Physics.Velocity.X = e.Physics.MaxSpeed;
+            } else if (e.Physics.Velocity.X < -e.Physics.MaxSpeed) {
+                e.Physics.Velocity.X = -e.Physics.MaxSpeed;
+            }
+            
+            if (e.Physics.Velocity.Y > e.Physics.MaxSpeed) {
+                e.Physics.Velocity.Y = e.Physics.MaxSpeed;
+            } else if (e.Physics.Velocity.Y < -e.Physics.MaxSpeed) {
+                e.Physics.Velocity.Y = -e.Physics.MaxSpeed;
+            }
+            
+            e.X += e.Physics.Velocity.X * dt;
+            e.Y += e.Physics.Velocity.Y * dt;
+            
+            if (e.X > scene.Viewport.Width) {
+                e.X = 0;
+            } else if (e.X < 0) {
+                e.X = scene.Viewport.Width;
+            }
+            
+            var DragWeight = (e.Physics.Drag * dt);
+            
+            if ((e.Physics.Velocity.X < DragWeight) && (e.Physics.Velocity.X > -DragWeight)) {
+                e.Physics.Velocity.X = 0;
+            } else {
+                e.Physics.Velocity.X -= ((e.Physics.Velocity.X < 0) ? -DragWeight : DragWeight);
+            }
+            
+            if ((e.Physics.Velocity.Y < DragWeight) && (e.Physics.Velocity.Y > -DragWeight)) {
+                e.Physics.Velocity.Y = 0;
+            } else {
+                e.Physics.Velocity.Y -= ((e.Physics.Velocity.Y < 0) ? -DragWeight : DragWeight);
+            }
+        }
         
         if (e.LastModelUpdate + e.AnimationSpeed < now) {
             if (++e.CurrentModel > ModelSet[e.ModelSet].length - 1) {

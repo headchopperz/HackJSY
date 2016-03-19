@@ -141,6 +141,19 @@ function mouseCheck(e) {
 }
 
 $(document).ready(function() {
+    window.addEventListener("keydown", function (e) {
+        if (!getKeyPressed(e.keyCode))
+            keyArray.push(e.keyCode);
+        e.preventDefault();
+    });
+
+    window.addEventListener("keyup", function (e) {
+        keyIndex = getKeyPressed(e.keyCode, true);
+        if (keyIndex !== false) {
+            keyArray.splice(keyIndex, 1);
+        }
+    });
+    
     canvas.addEventListener("mousedown", function (e) {
         _mouse.Down = true;
         
