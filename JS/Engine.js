@@ -70,13 +70,16 @@ function main() {
         /*
          * if the user is not in the main menu
          */
+        
         if (!menu) {
             sync(dt);
             mainLoop(dt);
         } else {
             sync(dt);
-            drawButtons();
+            drawButtons(dt);
         }
+        
+        drawdebug();
     }
 
     lastTime = now;
@@ -88,6 +91,18 @@ function main() {
     
 }
 
+function playGame(e) {
+    console.log(e);
+}
+
+function drawdebug() {
+    context.textAlign = 'left';
+    context.font = "16px georgia";
+    context.fillStyle = "white";
+    context.fillText("X: " + _mouse.X,2,15);
+    context.fillText("Y: " + _mouse.Y,2,35);
+}
+
 /**
  * This function will clear the current screen,
  * its meant to be un every loop to clear the frustrum, but possibly
@@ -97,6 +112,76 @@ function sync(dt) {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+function mouseCheck(e) {
+    if (_mouse.Down) {
+        Buttons.forEach(function (e) {
+            if ((e.Visible == true) && (e._onClick !== null) && (!e.Pressed)) {
+                var X = e.X;
+                var Y = e.Y;
+                
+                if (e.Centered) {
+                    X = e.X - (e.Width / 2);
+                    Y = e.Y - (e.Height / 2);
+                }
+
+                if ((_mouse.X < X + e.Width) &&
+                        (_mouse.X > X) &&
+                        (_mouse.Y < Y + e.Height) &&
+                        (_mouse.Y > Y)) {
+                    e._onClick();
+                }
+            }
+        });
+    }
+}
+
 $(document).ready(function() {
+    canvas.addEventListener("mousedown", function (e) {
+        _mouse.Down = true;
+        
+        mouseCheck(e);
+    });
+    
+    canvas.addEventListener("mouseup", function (e) {
+        _mouse.Down = false;
+
+        Buttons.forEach(function (e) {
+            if ((e.Visible == true) && (e._onRelease !== null) && (e.Pressed)) {
+                var X = e.X;
+                var Y = e.Y;
+                
+                if (e.Centered) {
+                    X = e.X - (e.Width / 2);
+                    Y = e.Y - (e.Height / 2);
+                }
+
+                if ((_mouse.X < X + e.Width) &&
+                        (_mouse.X > X) &&
+                        (_mouse.Y < Y + e.Height) &&
+                        (_mouse.Y > Y)) {
+                    e._onRelease();
+                }
+            }
+        });
+    });
+
+    canvas.addEventListener("mousemove", function (e) {
+        _mouse.X = Math.round(e.pageX - $('#scene').offset().left, 10); //this window has a margin of 8
+        _mouse.Y = Math.round(e.pageY - $('#scene').offset().top, 10); //this window has a margin of 8
+        
+        if (_mouse.X > scene.Viewport.Width) {
+            _mouse.X = scene.Viewport.Width;
+        } else if (_mouse.X < 0) {
+            _mouse.X = 0;
+        }
+        if (_mouse.Y > scene.Viewport.Height) {
+            _mouse.Y = scene.Viewport.Height;
+        } else if (_mouse.Y < 0) {
+            _mouse.Y = 0;
+        }
+        
+        mouseCheck(e);
+    });
+    
     requestAnimFrame(main);
 });

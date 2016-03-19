@@ -33,7 +33,7 @@ var ButtonJSON = `
             "On": true,
             "Center": true,
             "Colour": "White",
-            "Pressed": "White",
+            "Pressed": "Black",
             "Outline": false,
             "Value": "Play Game",
             "Font": "Georgia",
@@ -45,7 +45,8 @@ var ButtonJSON = `
             "_oldValue": "",
             "forceInt": false,
             "forcePositive": true
-        }
+        },
+        "onClick": "playGame"
     }
 ]
 `;

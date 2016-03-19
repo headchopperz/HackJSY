@@ -39,10 +39,95 @@ var _button = {
         forceInt: false,
         forcePositive: false
     },
+    /**
+     * When the textbox info has changed
+     * This function operates behind the scenes
+     * @type function
+     * @returns {null}
+     */
+    _onChanged: function() {
+        this.TextBox._oldValue = this.TextBox.Value;
+        
+        if (typeof this.onChanged !== "undefined") {
+            var fn = window[this.onChanged];
+            if (typeof fn === "function") {
+                fn.apply(null, [this]);
+            }
+        }
+    },
+    /**
+     * When the button has been clicked
+     * This function operates behind the scenes, it modifies the pressed value
+     * @type function
+     * @returns {null}
+     */
+    _onClick: function() {
+        this.Pressed = true;
+        
+        if (this.TextBox.On)
+            SelectedButton = this;
+        
+        if (typeof this.onClick !== "undefined") {
+            var fn = window[this.onClick];
+            if (typeof fn === "function") {
+                fn.apply(null, [this]);
+            }
+        }
+    },
+    /**
+     * When the cursor of the mouse has been released, after clicking
+     * This function operates behind the scenes, it modifies the pressed value
+     * @type function
+     * @returns {null}
+     */
+    _onRelease: function() {
+        this._onLeave();
+        
+        if (typeof this.onRelease !== "undefined") {
+            var fn = window[this.onRelease];
+            if (typeof fn === "function") {
+                fn.apply(null, [this]);
+            }
+        }
+    },
+    /**
+     * When the cursor leaves the button
+     * This function operates behind the scenes, it modifies the pressed value
+     * @type function
+     * @returns {null}
+     */
+    _onLeave: function() {
+        this.Pressed = false;
+    },
+    /**
+     * The function to run when the button is pressed
+     * @type function
+     */
+    onClick: null,
+    /**
+     * The function to run when the mouse is released
+     * @type function
+     */
+    onRelease: null,
+    /**
+     * The function to run when the content is changed (textbox)
+     * @type function
+     */
+    onChanged: null,
 }
 
 if (typeof Buttons === "undefined") {
     var Buttons = new array();
+} else {
+    /**
+     * Buttons loaded from JSON will not have any of the default functions set
+     */
+    Buttons.forEach(function(e) {
+        e._onChanged = _button._onChanged;
+        e._onClick = _button._onClick;
+        e._onRelease = _button._onRelease;
+        e._onLeave = _button._onLeave;
+    });
 }
 
 /**
@@ -91,6 +176,8 @@ function drawButtons(dt) {
                     context.textAlign = 'left';
                 
                 var textValue = e.Text.Value;
+                if (e.TextBox.On)
+                    textValue += e.TextBox.Value;
                 
                 context.fillStyle = (e.Pressed) ? e.Text.Pressed : e.Text.Colour;
                 context.fillText(textValue, X + (e.Width / 2), Y + (e.Height / 2) + (e.Text.Size / 2));

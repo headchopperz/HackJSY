@@ -37,3 +37,11 @@ var _mouse = {
     Y: 0,
     Down: false
 }
+
+/**
+ * What button is being currently selected, this is needed for rendering or
+ * textbox editing purposes
+ * 
+ * @type (Object)
+ */
+var SelectedButton = null;
