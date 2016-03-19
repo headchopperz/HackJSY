@@ -21,6 +21,8 @@ function handleAISpawning(dt) {
         var ID = Entities.push(JSON.parse(JSON.stringify(Entities[1]))) - 1; 
         Entities[ID].State = 1;
         Entities[ID].AI.SinWave = _aiSpawn.ShipFleetStart;
+        Entities[ID].AI.lastBulletShot = now;
+        Entities[ID].AI.nextBulletShot = Math.random() * 1000;
         
         if (_aiSpawn.cShipSpawn++ > 1 + Math.round((Math.random() * 3))) {
             _aiSpawn.cShipSpawn = 0;

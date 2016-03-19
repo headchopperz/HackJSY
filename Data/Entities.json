@@ -20,6 +20,8 @@ var EntityJSON = `
         "ModelSet": 0,
         "CurrentModel": 0,
         "AIType": 0,
+        "Group": 1,
+        "Hardness": 0,
         "LastModelUpdate": 0,
         "AnimationSpeed": 500,
         "Physics": {
@@ -35,7 +37,9 @@ var EntityJSON = `
         },
         "AI": {
             "SinWave": 0,
-            "LastShoot": 0
+            "LastShoot": 0,
+            "lastBulletShot": 0,
+            "nextBulletShot": 0
         }
     }, {
         "Description": "Earth Ship",
@@ -47,6 +51,8 @@ var EntityJSON = `
         "ModelSet": 1,
         "CurrentModel": 0,
         "AIType": 1,
+        "Group": 2,
+        "Hardness": 1,
         "LastModelUpdate": 0,
         "AnimationSpeed": 100,
         "State": 0,
@@ -63,7 +69,9 @@ var EntityJSON = `
         },
         "AI": {
             "SinWave": 0,
-            "LastShoot": 0
+            "LastShoot": 0,
+            "lastBulletShot": 0,
+            "nextBulletShot": 0
         }
     }, {
         "Description": "Boulder 1",
@@ -75,6 +83,8 @@ var EntityJSON = `
         "ModelSet": 2,
         "CurrentModel": 0,
         "AIType": 2,
+        "Group": 3,
+        "Hardness": 2,
         "LastModelUpdate": 0,
         "AnimationSpeed": 100,
         "State": 0,
@@ -91,7 +101,41 @@ var EntityJSON = `
         },
         "AI": {
             "SinWave": 0,
-            "LastShoot": 0
+            "LastShoot": 0,
+            "lastBulletShot": 0,
+            "nextBulletShot": 0
+        }
+    }, {
+        "Description": "Bullet",
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
+        "old_X": 0,
+        "old_Y": 0,        
+        "ModelSet": 3,
+        "CurrentModel": 0,
+        "AIType": 3,
+        "Group": 2,
+        "Hardness": 3,
+        "LastModelUpdate": 0,
+        "AnimationSpeed": 100,
+        "State": 0,
+        "Physics": {
+            "On": true,
+            "Collision": true,
+            "MaxSpeed": 1,
+            "Drag": 0,
+            "Thrust": 0.0073,
+            "Velocity": {
+                "X": 0,
+                "Y": 0
+            }
+        },
+        "AI": {
+            "SinWave": 0,
+            "LastShoot": 0,
+            "lastBulletShot": 0,
+            "nextBulletShot": 0
         }
     }
 ]
