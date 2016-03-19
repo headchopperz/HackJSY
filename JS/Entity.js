@@ -60,9 +60,8 @@ if (typeof Entities === "undefined") {
 function drawEntities(dt) {
     var now = Date.now();
 
-    Entities.forEach(function(e) {
+    Entities.forEach(function(e, i) {
         if (e.State === 1) {
-
             if ((e.Physics.Velocity.Y !== 0) || (e.Physics.Velocity.X !== 0)) {
 
                 if (e.Physics.Velocity.X > e.Physics.MaxSpeed) {
@@ -90,6 +89,17 @@ function drawEntities(dt) {
                         e.X = scene.Viewport.Width - (10 * scene.Tile_Size);
                     } else if (e.X < 0) {
                         e.X = 0;
+                    }
+                } else {
+                    if (e.Y > scene.Viewport.Height) {
+                        Entities.splice(i, 1);
+                    } else if (e.Y < 0) {
+                        Entities.splice(i, 1);
+                    }
+                    if (e.X > scene.Viewport.Width) {
+                        Entities.splice(i, 1);
+                    } else if (e.X < 0) {
+                        Entities.splice(i, 1);
                     }
                 }
 
@@ -156,8 +166,12 @@ function controlEntities(dt) {
                 e.Physics.Velocity.X = 0.01 * dt;
 
             } else if (e.AIType === AI_Type.Boulder) {
-                e.Physics.Velocity.X = -(0.01 * dt);
+                e.Physics.Velocity.X = -0.15;
             }
         }
     });
+}
+
+function checkCollisions(dt) {
+    
 }

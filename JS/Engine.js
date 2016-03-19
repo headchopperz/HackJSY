@@ -74,6 +74,7 @@ function main() {
         if (!menu) {
             //checkmovementetc
             controlEntities(dt);
+            checkCollisions(dt);
             sync(dt);
             drawAtmosphere(dt);
             drawEntities(dt);
