@@ -1,0 +1,25 @@
+canvas {
+    border: 1px dotted white;
+    background-color: rgb(38, 38, 42);
+    display:block;
+    
+    position:absolute;
+    top:50%;
+    left:50%;
+    
+    
+    -ms-transform: translateY(-50%) translateX(-50%);
+    -webkit-transform: -webkit-translateY(-50%) -webkit-translateX(-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+}
+
+html {
+    background-color:black;
+}
+
+body {
+    margin: 8px;
+}
