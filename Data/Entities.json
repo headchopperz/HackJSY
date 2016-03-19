@@ -1,0 +1,32 @@
+/**
+ * This file is JS file rather than a JSON one because javascript does not 
+ * have the permission to access local files normally, but we can work around
+ * that by making this file actually parse the JSON rather than a different file
+ */
+ 
+ /**
+  * Backtick is some sort of ECMAScript 6 voodoo shit to allow multilined strings
+  */
+var EntityJSON = `
+[
+    {
+        "Description": "Player",
+        "X": 100,
+        "Y": 100,
+        "Z": 0,
+        "old_X": 100,
+        "old_Y": 100,        
+        "ModelSet": 0,
+        "CurrentModel": 0,
+        "LastModelUpdate": 0,
+        "AnimationSpeed": 500,
+        "Physics": {
+            "On": true,
+            "Collision": true,
+            "Speed": 1
+        }
+    }
+]
+`;
+ 
+var Entities=JSON.parse(EntityJSON);
