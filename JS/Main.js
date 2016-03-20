@@ -23,4 +23,7 @@ function mainLoop(dt) {
     Entities[0].Physics.Velocity.X -= (0.0018 * (Entities[0].X / scene.Viewport.Width)) * dt;
     
     handleAISpawning(dt);
+    
+    $('canvas').css('background-position-x', (-(Math.round(score / 25))) + 'px');
+    $('canvas').css('background-repeat', 'no-repeat');
 }

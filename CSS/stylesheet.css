@@ -1,6 +1,13 @@
 canvas {
     border: 1px dotted white;
-    background-color: rgb(38, 38, 42);
+    background-color: #090909;
+    background-repeat:no-repeat;
+    
+    background: #535353; /* Old browsers */
+    background: -moz-linear-gradient(left, #535353 0%, #090909 61%);
+    background: -webkit-linear-gradient(left, #535353 0%,#090909 61%);
+    background: linear-gradient(to right, #535353 0%,#090909 61%);
+    
     display:block;
     
     position:absolute;
