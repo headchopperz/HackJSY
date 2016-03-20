@@ -49,3 +49,35 @@ var SelectedButton = null;
 var GameStart = Date.now();
 var cTime = Date.now();
 var score = 0;
+
+var audio = {
+    ctx: null,
+    osc: null,
+    gain: null
+};
+
+
+audio.ctx = new (window.AudioContext || window.webkitAudioContext)();
+audio.gain = audio.ctx.createGain();
+audio.osc = audio.ctx.createOscillator();
+
+
+audio.osc.type = 'square';
+audio.osc.volume = 0.5;
+audio.osc.frequency.value=100;
+audio.osc.connect(audio.gain);
+audio.osc.start(0);
+
+
+audio.gain.gain.value = 0.15;
+audio.gain.connect(audio.ctx.destination);
+
+
+var i = 0;
+setInterval(function() {
+    audio.osc.frequency.value = 100 + Math.sin(i+=0.1);
+}, 25);
+setTimeout(function() {
+    audio.osc.stop(0);
+}, 5500);
+

@@ -58,6 +58,11 @@ var _entity = {
         LastShoot: 0,
         lastBulletShot: 0,
         nextBulletShot: 0
+    },
+    Audio: {
+        ctx: null,
+        osc: null,
+        gain: null
     }
 }
 
@@ -67,7 +72,7 @@ if (typeof Entities === "undefined") {
     /**
      * Buttons loaded from JSON will not have any of the default functions set
      */
-    Entities.forEach(function(e) {
+    Entities.forEach(function (e) {
         e._onDeath = _entity._onDeath;
     });
 }
@@ -75,7 +80,7 @@ if (typeof Entities === "undefined") {
 function drawEntities(dt) {
     var now = Date.now();
 
-    Entities.forEach(function(e, i) {
+    Entities.forEach(function (e, i) {
         if (e.State === 1) {
             if ((e.Physics.Velocity.Y !== 0) || (e.Physics.Velocity.X !== 0)) {
 
@@ -168,7 +173,7 @@ function drawEntities(dt) {
 function controlEntities(dt) {
     var now = Date.now();
 
-    Entities.forEach(function(e) {
+    Entities.forEach(function (e) {
         if (e.State === 1) {
             if (e.AIType === AI_Type.SinWaveShooter) {
 
@@ -184,10 +189,16 @@ function controlEntities(dt) {
                     Entities[ID].X = e.X;
                     Entities[ID].Y = e.Y + (scene.Tile_Size * 2);
                     Entities[ID].Physics.Velocity.X = 1 * (getScore() / 15000);
-        
+
                     e.AI.lastBulletShot = now;
                     e.AI.nextBulletShot = 500 + Math.random() * 4000;
                 }
+
+                if (loadEntitiesAudio(e)) {
+                    e.Audio.osc.start(0);
+                }
+
+                e.Audio.osc.frequency.value = 100 + e.Y;
 
 
                 /*
@@ -210,8 +221,8 @@ var lastCollissionCheck = 0;
 function checkCollisions(dt) {
     var now = Date.now();
     if (lastCollissionCheck + 50 < now) {
-        Entities.forEach(function(e1, i1) {
-            Entities.forEach(function(e2, i2) {
+        Entities.forEach(function (e1, i1) {
+            Entities.forEach(function (e2, i2) {
                 if ((i1 !== i2) && (e1.Group !== e2.Group) && (e1.State === AI_State.Alive) && (e2.State === AI_State.Alive) && (e1.Physics.Collision) && (e2.Physics.Collision)) {
                     var xDistance = e1.X - e2.X;
                     var yDistance = e1.Y - e2.Y;
@@ -281,15 +292,38 @@ function killEntity(e) {
     Entities[ID].State = 1;
     Entities[ID].X = e.X;
     Entities[ID].Y = e.Y + (scene.Tile_Size * 2);
-                    
+
     if (e.Description === "Player") {
         alert('game over');
         location.reload();
     } else {
-        Entities.forEach(function(eN, i) {
+        Entities.forEach(function (eN, i) {
             if (eN === e) {
+                if ((typeof e.Audio !== "undefined") && (typeof e.Audio.osc !== "undefined")) {
+                    e.Audio.osc.stop(0);
+                }
                 Entities.splice(i, 1);
             }
         });
     }
+}
+
+function loadEntitiesAudio(e) {
+    if ((typeof e.Audio === "undefined") || (typeof e.Audio.ctx === "undefined")) {
+        e.Audio = new Array();
+
+        e.Audio.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        e.Audio.gain = e.Audio.ctx.createGain();
+        e.Audio.osc = e.Audio.ctx.createOscillator();
+        e.Audio.osc.connect(e.Audio.gain);
+        e.Audio.gain.connect(e.Audio.ctx.destination);
+
+        e.Audio.osc.type = 'square';
+        e.Audio.osc.frequency.value = 100;
+        e.Audio.gain.gain.value = 0.15;
+
+        return true;
+    }
+    return false;
+
 }

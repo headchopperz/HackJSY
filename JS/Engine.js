@@ -82,6 +82,9 @@ function main() {
             showScore(dt);
         } else {
             sync(dt);
+            if (getKeyPressed(KEY.SPACE)) {
+                playGame();
+            }
             drawButtons(dt);
         }
         
