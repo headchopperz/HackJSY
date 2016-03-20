@@ -44,7 +44,8 @@ var ButtonJSON = `
             "Value": "",
             "_oldValue": "",
             "forceInt": false,
-            "forcePositive": true
+            "forcePositive": true,
+            "maxLength": 21
         },
         "onRelease": "playGame"
     }, {
@@ -82,9 +83,10 @@ var ButtonJSON = `
             "Value": "",
             "_oldValue": "",
             "forceInt": false,
-            "forcePositive": true
+            "forcePositive": true,
+            "maxLength": 21
         },
-        "onClick": "showHighscores"
+        "onRelease": "loadHighscores"
     }, {
         "Description": "Title",
         "Visible": true,
@@ -120,7 +122,8 @@ var ButtonJSON = `
             "Value": "",
             "_oldValue": "",
             "forceInt": false,
-            "forcePositive": true
+            "forcePositive": true,
+            "maxLength": 21
         }
     }, {
         "Description": "Title",
@@ -157,7 +160,694 @@ var ButtonJSON = `
             "Value": "",
             "_oldValue": "",
             "forceInt": false,
-            "forcePositive": true
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Play Again",
+        "Visible": false,
+        "X": 125,
+        "Y": 425,
+        "Width": 200,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": true,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": true,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "Black",
+            "Outline": false,
+            "Value": "Play Again!",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        },
+        "onRelease": "reloadPage"
+    }, {
+        "Description": "Title",
+        "Visible": false,
+        "X": 600,
+        "Y": 450,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "Look at all these chumps with their worthless scores!",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Title",
+        "Visible": false,
+        "X": 600,
+        "Y": 475,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "You could beat them EASILY.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore Name",
+        "Visible": false,
+        "X": 600,
+        "Y": 250,
+        "Width": 700,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": true,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": true,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "Black",
+            "Outline": false,
+            "Value": "Name:",
+            "Font": "VT323,Georgia",
+            "Size": 62
+        },
+        "TextBox": {
+            "On": true,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Title",
+        "Visible": false,
+        "X": 600,
+        "Y": 450,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "Oh dear... You have died...",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Title",
+        "Visible": false,
+        "X": 600,
+        "Y": 475,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "Hey, why not your score to the highscores?!",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Title",
+        "Visible": false,
+        "X": 600,
+        "Y": 180,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "Score: 0",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Save",
+        "Visible": false,
+        "X": 600,
+        "Y": 375,
+        "Width": 200,
+        "Height": 60,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": true,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": true,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "Black",
+            "Outline": false,
+            "Value": "Save Score!",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        },
+        "onRelease": "saveScore"
+    }, {
+        "Description": "Highscore1",
+        "Visible": false,
+        "X": 600,
+        "Y": 140,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "1.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore2",
+        "Visible": false,
+        "X": 600,
+        "Y": 170,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "2.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore3",
+        "Visible": false,
+        "X": 600,
+        "Y": 200,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "3.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore4",
+        "Visible": false,
+        "X": 600,
+        "Y": 230,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "4.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore5",
+        "Visible": false,
+        "X": 600,
+        "Y": 260,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "5.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore6",
+        "Visible": false,
+        "X": 600,
+        "Y": 290,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "6.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore7",
+        "Visible": false,
+        "X": 600,
+        "Y": 320,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "7.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore8",
+        "Visible": false,
+        "X": 600,
+        "Y": 350,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "8.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore9",
+        "Visible": false,
+        "X": 600,
+        "Y": 380,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "9.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
+        }
+    }, {
+        "Description": "Highscore10",
+        "Visible": false,
+        "X": 600,
+        "Y": 420,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "10.",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true,
+            "maxLength": 21
         }
     }
 ]

@@ -51,6 +51,8 @@ var cTime = Date.now();
 var score = 0;
 var debug = false;
 var debughasrisenkeys = true;
+var highscores = true;
+var lastscore = 0;
 
 var audio = {
     ctx: null,

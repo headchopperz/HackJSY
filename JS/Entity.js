@@ -233,7 +233,7 @@ function checkCollisions(dt) {
     if (lastCollissionCheck + 0 < now) {
         Entities.forEach(function (e1, i1) {
             Entities.forEach(function (e2, i2) {
-                if ((i1 !== i2) && (e1.Group !== e2.Group) && (e1.State === AI_State.Alive) && (e2.State === AI_State.Alive) && (e1.Physics.Collision) && (e2.Physics.Collision)) {
+                if ((i1 !== i2) && (e1.Group !== e2.Group) && (e1.State === AI_State.Alive) && (e2.State === AI_State.Alive) && (e1.Physics.Collision) && (e2.Physics.Collision) && (!menu)) {
                     if (doEntitiesCollide(e1, e2)) {
                         handleCollision(e1, e2);
                         return;
@@ -320,8 +320,7 @@ function killEntity(e, explosion = true) {
     }
 
     if (e.Description === "Player") {
-        alert('game over');
-        location.reload();
+        gameOver();
     } else {
         Entities.forEach(function (eN, i) {
             if (eN === e) {

@@ -91,7 +91,7 @@ function main() {
             showScore(dt);
         } else {
             sync(dt);
-            if (getKeyPressed(KEY.SPACE)) {
+            if (getKeyPressed(KEY.SPACE) && (SelectedButton === null) && (Buttons[0].Visible)) {
                 playGame();
             }
             drawButtons(dt);
@@ -117,6 +117,11 @@ function main() {
 function playGame(e) {
     menu = false;
     GameStart = Date.now();
+    
+    Buttons[0].Visible = false;
+    Buttons[1].Visible = false;
+    Buttons[2].Visible = false;
+    Buttons[3].Visible = false;
 }
 
 function drawdebug() {
@@ -174,6 +179,21 @@ $(document).ready(function () {
     window.addEventListener("keydown", function (e) {
         if (!getKeyPressed(e.keyCode))
             keyArray.push(e.keyCode);
+        
+        if (SelectedButton !== null) {
+            SelectedButton.TextBox.Value = String(SelectedButton.TextBox.Value);
+            if ((e.keyCode == KEY.ENTER) || (e.keyCode == KEY.ESCAPE)) {
+                SelectedButton = null;
+            } else if ((e.keyCode == KEY.BACKSPACE) && (SelectedButton.TextBox.Value.length > 0)) {
+                SelectedButton.TextBox.Value = SelectedButton.TextBox.Value.substring(0, SelectedButton.TextBox.Value.length - 1);
+            } else if ((String.fromCharCode(e.keyCode)) && (SelectedButton.TextBox.Value.length < SelectedButton.TextBox.maxLength)) {                
+                SelectedButton.TextBox.Value += String.fromCharCode(e.keyCode);
+            }
+
+            if ((SelectedButton !== null) && (SelectedButton.TextBox._oldValue !== SelectedButton.TextBox.Value))
+                SelectedButton._onChanged();
+        }
+        
         e.preventDefault();
     });
 
@@ -237,4 +257,144 @@ $(document).ready(function () {
 
 function getScore() {
     return score;
+}
+
+function gameOver() {
+    menu = true;
+    
+    if (score > 0) {
+        lastscore = score;
+        score = 0;
+    }
+    
+    Buttons[0].Visible = false;
+    Buttons[1].Visible = false;
+    Buttons[2].Visible = false;
+    Buttons[3].Visible = false;
+    Buttons[5].Visible = false;
+    Buttons[6].Visible = false;
+    
+    
+    Buttons[4].Visible = true;
+    Buttons[2].Visible = true;
+    Buttons[7].Visible = true;    
+    Buttons[8].Visible = true;   
+    Buttons[9].Visible = true;
+    Buttons[10].Visible = true;
+    Buttons[11].Visible = true;
+    
+    Buttons[10].Text.Value = "Score: " + lastscore;
+    
+    
+}
+
+function loadHighscores() {
+    menu = true;
+    highscores = true;
+    
+    Buttons[0].Visible = false;
+    Buttons[1].Visible = false;
+    Buttons[2].Visible = false;
+    Buttons[3].Visible = false;
+    
+    Buttons[2].Visible = true;
+    Buttons[4].Visible = true;
+    Buttons[5].Visible = true;
+    Buttons[6].Visible = true;
+    
+    Buttons[12].Visible = true;
+    Buttons[13].Visible = true;
+    Buttons[14].Visible = true;
+    Buttons[15].Visible = true;
+    Buttons[16].Visible = true;
+    Buttons[17].Visible = true;
+    Buttons[18].Visible = true;
+    Buttons[19].Visible = true;
+    Buttons[20].Visible = true;
+    Buttons[21].Visible = true;
+    
+    Highscores.sort(compareScore);
+    
+    if (typeof Highscores[0] !== "undefined") {
+        Buttons[12].Text.Value = "1. " + Highscores[0].Name + " ::: " + Highscores[0].Score;
+    }
+    if (typeof Highscores[1] !== "undefined") {
+        Buttons[13].Text.Value = "2. " + Highscores[1].Name + " ::: " + Highscores[1].Score;
+    }
+    if (typeof Highscores[2] !== "undefined") {
+        Buttons[14].Text.Value = "3. " + Highscores[2].Name + " ::: " + Highscores[2].Score;
+    }
+    if (typeof Highscores[3] !== "undefined") {
+        Buttons[15].Text.Value = "4. " + Highscores[3].Name + " ::: " + Highscores[3].Score;
+    }
+    if (typeof Highscores[4] !== "undefined") {
+        Buttons[16].Text.Value = "5. " + Highscores[4].Name + " ::: " + Highscores[4].Score;
+    }
+    if (typeof Highscores[5] !== "undefined") {
+        Buttons[17].Text.Value = "6. " + Highscores[5].Name + " ::: " + Highscores[5].Score;
+    }
+    if (typeof Highscores[6] !== "undefined") {
+        Buttons[18].Text.Value = "7. " + Highscores[6].Name + " ::: " + Highscores[6].Score;
+    }
+    if (typeof Highscores[7] !== "undefined") {
+        Buttons[19].Text.Value = "8. " + Highscores[7].Name + " ::: " + Highscores[7].Score;
+    }
+    if (typeof Highscores[8] !== "undefined") {
+        Buttons[20].Text.Value = "9. " + Highscores[8].Name + " ::: " + Highscores[8].Score;
+    }
+    if (typeof Highscores[9] !== "undefined") {
+        Buttons[21].Text.Value = "10. " + Highscores[9].Name + " ::: " + Highscores[9].Score;
+    }
+}
+
+function reloadPage() {
+    location.reload();
+}
+
+function saveScore() {
+    var Name = Buttons[7].TextBox.Value;
+    if (Name.length === 0) {
+        Name = "BadBreath";
+    }
+    var uScore = lastscore;
+    
+    var HighscoreItem = {
+        "Name": Name,
+        "Score": uScore
+    }
+    
+    Highscores.push(HighscoreItem);
+    Highscores.sort(compareScore);
+    
+    var textFileAsBlob = new Blob(["var Highscores=JSON.parse('" + JSON.stringify(Highscores) + "');"], {
+        type: 'text/plain'
+    });
+    
+    var downloadLink = document.createElement("a");
+    downloadLink.download = "Highscore.json";
+    downloadLink.innerHTML = "Download File";
+    if (window.webkitURL != null) {
+        // Chrome allows the link to be clicked
+        // without actually adding it to the DOM.
+        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    } else {
+        // Firefox requires the link to be added to the DOM
+        // before it can be clicked.
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = function (event) {
+            document.body.removeChild(event.target);
+        };
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
+}
+
+function compareScore(a,b) {
+    if (a.Score > b.Score)
+        return -1;
+    if (a.Score < b.Score)
+        return 1;
+    return 0;
 }

@@ -1,0 +1,1 @@
+var Highscores=JSON.parse('[{"Name":"MICHAEL","Score":7083},{"Name":"TESTNAMEPLEASEIGNORE","Score":418},{"Name":"EE","Score":367},{"Name":"ASD","Score":253},{"Name":"SP AC ES","Score":3}]');

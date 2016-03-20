@@ -37,7 +37,8 @@ var _button = {
         Value: "",
         _oldValue: "",
         forceInt: false,
-        forcePositive: false
+        forcePositive: false,
+        maxLength: 21
     },
     /**
      * When the textbox info has changed
@@ -178,6 +179,8 @@ function drawButtons(dt) {
                 var textValue = e.Text.Value;
                 if (e.TextBox.On)
                     textValue += e.TextBox.Value;
+                if (SelectedButton == e)
+                    textValue += "_";
                 
                 context.fillStyle = (e.Pressed) ? e.Text.Pressed : e.Text.Colour;
                 context.fillText(textValue, X + (e.Width / 2), Y + (e.Height / 2) + (e.Text.Size / 4));
