@@ -16,9 +16,9 @@ var lineAm = 5;
 function drawAtmosphere() {
     var now = Date.now();
     
-    if (lastAtmosphereDraw + 320 - (score / 500) < now) {
+    if (lastAtmosphereDraw + (320 / (getScore() / 7500)) < now) {
         
-        lineAm = 5 + (score / 100);
+        lineAm = 5 * (getScore() / 1500);
 
         Dashes = new Array();
 
@@ -27,7 +27,7 @@ function drawAtmosphere() {
             Dashes[i].X = Math.random() * scene.Viewport.Width;
             Dashes[i].Y = Math.random() * scene.Viewport.Height;
             Dashes[i].Width = 5 + Math.random() * 185;
-            Dashes[i].Height = 1;
+            Dashes[i].Height = 2;
             Dashes[i].Colour = parseInt(0 + (((1 - (Dashes[i].Width / 100)) * 200)), 10);
         }
 

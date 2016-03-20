@@ -34,7 +34,7 @@ var AudioJSON = `
             "Desc": "Gb4",
             "Note": 369.99,
             "Volume": 0.77,
-            "Duration": 2
+            "Duration": 1.5
         }, {
             "Desc": "F4",
             "Note": 349.23,
@@ -63,38 +63,63 @@ var AudioJSON = `
         }, {
             "Desc": "Gb4",
             "Note": 369.99,
-            "Volume": 0.77,
-            "Duration": 2
-        }, {
-            "Desc": "F4",
-            "Note": 349.23,
-            "Volume": 0.77,
-            "Duration": 1
-        }, {
-            "Desc": "Eb4",
-            "Note": 311.13,
-            "Volume": 0.77,
-            "Duration": 1
-        }, {
-            "Desc": "E4",
-            "Note": 329.63,
-            "Volume": 0.77,
-            "Duration": 1
-        }, {
-            "Desc": "Eb4",
-            "Note": 311.13,
-            "Volume": 0.77,
-            "Duration": 1
-        }, {
-            "Desc": "E4",
-            "Note": 329.63,
-            "Volume": 0.77,
-            "Duration": 1
-        }, {
-            "Desc": "F4",
-            "Note": 349.23,
             "Volume": 0.77,
             "Duration": 1.5
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0,
+            "Duration": 0.5
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "Eb4",
+            "Note": 311.13,
+            "Volume": 0,
+            "Duration": 0.25
+        }, {
+            "Desc": "Eb4",
+            "Note": 311.13,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "E4",
+            "Note": 329.63,
+            "Volume": 0,
+            "Duration": 0.25
+        }, {
+            "Desc": "E4",
+            "Note": 329.63,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "Eb4",
+            "Note": 311.13,
+            "Volume": 0,
+            "Duration": 0.25
+        }, {
+            "Desc": "Eb4",
+            "Note": 311.13,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "E4",
+            "Note": 329.63,
+            "Volume": 0,
+            "Duration": 0.25
+        }, {
+            "Desc": "E4",
+            "Note": 329.63,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0,
+            "Duration": 0.5
         }
     ]
 ]

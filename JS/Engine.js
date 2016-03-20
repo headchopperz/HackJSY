@@ -40,15 +40,15 @@ var requestAnimFrame = (function () {
  * @returns {Number}
  */
 function getKeyPressed(keyCode, getIndex = false) {
-var keyIndex = false;
-        for (var i = 0; i < keyArray.length; i++) {
-if (keyArray[i] === keyCode) {
-keyIndex = i;
-}
-}
-
-return keyIndex !== false ? (getIndex ? keyIndex : true) : false; //because 0 may be considered as false
+    var keyIndex = false;
+    for (var i = 0; i < keyArray.length; i++) {
+        if (keyArray[i] === keyCode) {
+            keyIndex = i;
         }
+    }
+
+    return keyIndex !== false ? (getIndex ? keyIndex : true) : false; //because 0 may be considered as false
+}
 
 /**
  * This is the program loop, but it isnt named that as i want to split the loop up
@@ -70,7 +70,7 @@ function main() {
          * if the user is not in the main menu
          */
 
-        if (audio.lastAudioUpdate + ((AudioList[0][audio.currentNote]['Duration'] * 400) / Math.ceil((getScore() / 5000))) < now) {
+        if (audio.lastAudioUpdate + ((AudioList[0][audio.currentNote]['Duration'] * 400) / (0.75 + (getScore() / 7000))) < now) {
             if (++audio.currentNote >= AudioList[0].length) {
                 audio.currentNote = 0;
             }

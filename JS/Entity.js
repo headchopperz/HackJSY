@@ -309,14 +309,14 @@ function killEntity(e) {
 }
 
 function loadEntitiesAudio(e) {
-    if ((typeof e.Audio === "undefined") || (typeof e.Audio.ctx === "undefined")) {
+    if ((typeof e.Audio === "undefined") || (typeof e.Audio.gain === "undefined")) {
         e.Audio = new Array();
 
-        e.Audio.ctx = new (window.AudioContext || window.webkitAudioContext)();
-        e.Audio.gain = e.Audio.ctx.createGain();
-        e.Audio.osc = e.Audio.ctx.createOscillator();
+        //e.Audio.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        e.Audio.gain = audio.ctx.createGain();
+        e.Audio.osc = audio.ctx.createOscillator();
         e.Audio.osc.connect(e.Audio.gain);
-        e.Audio.gain.connect(e.Audio.ctx.destination);
+        e.Audio.gain.connect(audio.ctx.destination);
 
         e.Audio.osc.type = 'triangle';
         e.Audio.osc.frequency.value = 100;

@@ -9,7 +9,7 @@ var _aiSpawn = {
 function handleAISpawning(dt) {
     var now = Date.now();
     
-    if ((_aiSpawn.cShipSpawn === 0) && (_aiSpawn.lastShipFleet + (20000  / Math.floor(getScore() / 5000)) < now)) {
+    if ((_aiSpawn.cShipSpawn === 0) && (_aiSpawn.lastShipFleet + (10000  / Math.floor(getScore() / 3000)) < now)) {
         _aiSpawn.cShipSpawn = 1;
         _aiSpawn.ShipFleetStart = Math.random() * 360;
         _aiSpawn.lastShipFleet = now;
@@ -34,7 +34,7 @@ function handleAISpawning(dt) {
         Entities[ID].AI.lastBulletShot = now;
         Entities[ID].AI.nextBulletShot = Math.random() * 1000;
         
-        if (_aiSpawn.cShipSpawn++ > 1 + Math.round((Math.random() * (getScore() / 5000)))) {
+        if (++_aiSpawn.cShipSpawn > Math.round(1 + (getScore() / 5000))) {
             _aiSpawn.cShipSpawn = 0;
         }
         
