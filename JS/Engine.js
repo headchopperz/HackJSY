@@ -40,16 +40,15 @@ var requestAnimFrame = (function () {
  * @returns {Number}
  */
 function getKeyPressed(keyCode, getIndex = false) {
-    var keyIndex = false;
-    
-    for (var i = 0; i < keyArray.length; i++) {
-        if (keyArray[i] === keyCode) {
-            keyIndex = i;
-        }
-    }
-    
-    return keyIndex !== false ? (getIndex ? keyIndex : true) : false; //because 0 may be considered as false
+var keyIndex = false;
+        for (var i = 0; i < keyArray.length; i++) {
+if (keyArray[i] === keyCode) {
+keyIndex = i;
 }
+}
+
+return keyIndex !== false ? (getIndex ? keyIndex : true) : false; //because 0 may be considered as false
+        }
 
 /**
  * This is the program loop, but it isnt named that as i want to split the loop up
@@ -60,7 +59,7 @@ function getKeyPressed(keyCode, getIndex = false) {
 function main() {
     var now = Date.now();
     var dt = now - lastTime; //Time since last loop
-    
+
     /**
      * If the time between since last loop is so great, then the jump it could cause
      * may actually break everything, so we skip that loop until the users computer
@@ -70,7 +69,17 @@ function main() {
         /*
          * if the user is not in the main menu
          */
-        
+
+        if (audio.lastAudioUpdate + ((AudioList[0][audio.currentNote]['Duration'] * 400) / Math.ceil((getScore() / 5000))) < now) {
+            if (++audio.currentNote >= AudioList[0].length) {
+                audio.currentNote = 0;
+            }
+
+            audio.osc.frequency.value = AudioList[0][audio.currentNote]['Note'];
+            audio.gain.gain.value = AudioList[0][audio.currentNote]['Volume'];
+            audio.lastAudioUpdate = now;
+        }
+
         if (!menu) {
             //checkmovementetc
             controlEntities(dt);
@@ -87,17 +96,17 @@ function main() {
             }
             drawButtons(dt);
         }
-        
+
         drawdebug();
     }
 
     lastTime = now;
-    
+
     /**
      * rerun the function when the computer can rerender the animation frame
      */
     requestAnimFrame(main);
-    
+
 }
 
 /**
@@ -112,17 +121,17 @@ function drawdebug() {
     context.textAlign = 'left';
     context.font = "16px georgia";
     context.fillStyle = "white";
-    context.fillText("X: " + _mouse.X,2,15);
-    context.fillText("Y: " + _mouse.Y,2,35);
+    context.fillText("X: " + _mouse.X, 2, 15);
+    context.fillText("Y: " + _mouse.Y, 2, 35);
 }
 
 function showScore() {
     var now = Date.now();
-    
+
     context.textAlign = 'right';
     context.font = "24px monospace";
     context.fillStyle = "white";
-    context.fillText(getScore(),scene.Viewport.Width - 15,30);
+    context.fillText(getScore(), scene.Viewport.Width - 15, 30);
 }
 
 /**
@@ -140,7 +149,7 @@ function mouseCheck(e) {
             if ((e.Visible == true) && (e._onClick !== null) && (!e.Pressed)) {
                 var X = e.X;
                 var Y = e.Y;
-                
+
                 if (e.Centered) {
                     X = e.X - (e.Width / 2);
                     Y = e.Y - (e.Height / 2);
@@ -157,7 +166,7 @@ function mouseCheck(e) {
     }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     window.addEventListener("keydown", function (e) {
         if (!getKeyPressed(e.keyCode))
             keyArray.push(e.keyCode);
@@ -170,13 +179,13 @@ $(document).ready(function() {
             keyArray.splice(keyIndex, 1);
         }
     });
-    
+
     canvas.addEventListener("mousedown", function (e) {
         _mouse.Down = true;
-        
+
         mouseCheck(e);
     });
-    
+
     canvas.addEventListener("mouseup", function (e) {
         _mouse.Down = false;
 
@@ -184,7 +193,7 @@ $(document).ready(function() {
             if ((e.Visible == true) && (e._onRelease !== null) && (e.Pressed)) {
                 var X = e.X;
                 var Y = e.Y;
-                
+
                 if (e.Centered) {
                     X = e.X - (e.Width / 2);
                     Y = e.Y - (e.Height / 2);
@@ -203,7 +212,7 @@ $(document).ready(function() {
     canvas.addEventListener("mousemove", function (e) {
         _mouse.X = Math.round(e.pageX - $('#scene').offset().left, 10); //this window has a margin of 8
         _mouse.Y = Math.round(e.pageY - $('#scene').offset().top, 10); //this window has a margin of 8
-        
+
         if (_mouse.X > scene.Viewport.Width) {
             _mouse.X = scene.Viewport.Width;
         } else if (_mouse.X < 0) {
@@ -214,10 +223,10 @@ $(document).ready(function() {
         } else if (_mouse.Y < 0) {
             _mouse.Y = 0;
         }
-        
+
         mouseCheck(e);
     });
-    
+
     requestAnimFrame(main);
 });
 

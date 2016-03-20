@@ -53,7 +53,9 @@ var score = 0;
 var audio = {
     ctx: null,
     osc: null,
-    gain: null
+    gain: null,
+    currentNote: 0,
+    lastAudioUpdate: 0
 };
 
 
@@ -62,22 +64,12 @@ audio.gain = audio.ctx.createGain();
 audio.osc = audio.ctx.createOscillator();
 
 
-audio.osc.type = 'square';
+audio.osc.type = 'sine';
 audio.osc.volume = 0.5;
 audio.osc.frequency.value=100;
 audio.osc.connect(audio.gain);
 audio.osc.start(0);
 
 
-audio.gain.gain.value = 0.15;
+audio.gain.gain.value = 0.75;
 audio.gain.connect(audio.ctx.destination);
-
-
-var i = 0;
-setInterval(function() {
-    audio.osc.frequency.value = 100 + Math.sin(i+=0.1);
-}, 25);
-setTimeout(function() {
-    audio.osc.stop(0);
-}, 5500);
-

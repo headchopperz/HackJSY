@@ -318,7 +318,7 @@ function loadEntitiesAudio(e) {
         e.Audio.osc.connect(e.Audio.gain);
         e.Audio.gain.connect(e.Audio.ctx.destination);
 
-        e.Audio.osc.type = 'square';
+        e.Audio.osc.type = 'triangle';
         e.Audio.osc.frequency.value = 100;
         e.Audio.gain.gain.value = 0.15;
 

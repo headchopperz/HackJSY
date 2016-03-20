@@ -1,0 +1,103 @@
+/**
+ * This file is JS file rather than a JSON one because javascript does not 
+ * have the permission to access local files normally, but we can work around
+ * that by making this file actually parse the JSON rather than a different file
+ */
+ 
+ /**
+  * Backtick is some sort of ECMAScript 6 voodoo shit to allow multilined strings
+  */
+var AudioJSON = `
+[
+    [
+        {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0,
+            "Duration": 0.5
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "Gb4",
+            "Note": 369.99,
+            "Volume": 0,
+            "Duration": 0.5
+        }, {
+            "Desc": "Gb4",
+            "Note": 369.99,
+            "Volume": 0.77,
+            "Duration": 2
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0,
+            "Duration": 0.5
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0,
+            "Duration": 0.5
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "Gb4",
+            "Note": 369.99,
+            "Volume": 0,
+            "Duration": 0.5
+        }, {
+            "Desc": "Gb4",
+            "Note": 369.99,
+            "Volume": 0.77,
+            "Duration": 2
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "Eb4",
+            "Note": 311.13,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "E4",
+            "Note": 329.63,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "Eb4",
+            "Note": 311.13,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "E4",
+            "Note": 329.63,
+            "Volume": 0.77,
+            "Duration": 1
+        }, {
+            "Desc": "F4",
+            "Note": 349.23,
+            "Volume": 0.77,
+            "Duration": 1.5
+        }
+    ]
+]
+`;
+ 
+var AudioList=JSON.parse(AudioJSON);
