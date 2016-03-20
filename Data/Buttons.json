@@ -380,7 +380,7 @@ var ButtonJSON = `
             "Colour": "White",
             "Pressed": "White",
             "Outline": false,
-            "Value": "Hey, why not your score to the highscores?!",
+            "Value": "Hey, why not save your score to the highscores?!",
             "Font": "VT323,Georgia",
             "Size": 24
         },

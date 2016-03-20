@@ -40,15 +40,15 @@ var requestAnimFrame = (function () {
  * @returns {Number}
  */
 function getKeyPressed(keyCode, getIndex = false) {
-    var keyIndex = false;
-    for (var i = 0; i < keyArray.length; i++) {
-        if (keyArray[i] === keyCode) {
-            keyIndex = i;
-        }
-    }
-
-    return keyIndex !== false ? (getIndex ? keyIndex : true) : false; //because 0 may be considered as false
+var keyIndex = false;
+        for (var i = 0; i < keyArray.length; i++) {
+if (keyArray[i] === keyCode) {
+keyIndex = i;
 }
+}
+
+return keyIndex !== false ? (getIndex ? keyIndex : true) : false; //because 0 may be considered as false
+        }
 
 /**
  * This is the program loop, but it isnt named that as i want to split the loop up
@@ -70,13 +70,13 @@ function main() {
          * if the user is not in the main menu
          */
 
-        if (audio.lastAudioUpdate + ((AudioList[0][audio.currentNote]['Duration'] * 400) / (0.75 + (getScore() / 7000))) < now) {
+        if (audio.lastAudioUpdate + ((AudioList[0][audio.currentNote]['Duration'] * 400) / (2 + (getScore() / 7000))) < now) {
             if (++audio.currentNote >= AudioList[0].length) {
                 audio.currentNote = 0;
             }
 
             audio.osc.frequency.value = AudioList[0][audio.currentNote]['Note'];
-            audio.gain.gain.value = AudioList[0][audio.currentNote]['Volume'];
+            audio.gain.gain.value = AudioList[0][audio.currentNote]['Volume'] * audio.volume;
             audio.lastAudioUpdate = now;
         }
 
@@ -117,7 +117,7 @@ function main() {
 function playGame(e) {
     menu = false;
     GameStart = Date.now();
-    
+
     Buttons[0].Visible = false;
     Buttons[1].Visible = false;
     Buttons[2].Visible = false;
@@ -179,21 +179,21 @@ $(document).ready(function () {
     window.addEventListener("keydown", function (e) {
         if (!getKeyPressed(e.keyCode))
             keyArray.push(e.keyCode);
-        
+
         if (SelectedButton !== null) {
             SelectedButton.TextBox.Value = String(SelectedButton.TextBox.Value);
             if ((e.keyCode == KEY.ENTER) || (e.keyCode == KEY.ESCAPE)) {
                 SelectedButton = null;
             } else if ((e.keyCode == KEY.BACKSPACE) && (SelectedButton.TextBox.Value.length > 0)) {
                 SelectedButton.TextBox.Value = SelectedButton.TextBox.Value.substring(0, SelectedButton.TextBox.Value.length - 1);
-            } else if ((String.fromCharCode(e.keyCode)) && (SelectedButton.TextBox.Value.length < SelectedButton.TextBox.maxLength)) {                
+            } else if ((String.fromCharCode(e.keyCode)) && (SelectedButton.TextBox.Value.length < SelectedButton.TextBox.maxLength)) {
                 SelectedButton.TextBox.Value += String.fromCharCode(e.keyCode);
             }
 
             if ((SelectedButton !== null) && (SelectedButton.TextBox._oldValue !== SelectedButton.TextBox.Value))
                 SelectedButton._onChanged();
         }
-        
+
         e.preventDefault();
     });
 
@@ -261,47 +261,54 @@ function getScore() {
 
 function gameOver() {
     menu = true;
-    
+
+    Entities.forEach(function (e, i) {
+        if ((typeof e.Audio !== "undefined") && (typeof e.Audio.osc !== "undefined")) {
+            e.Audio.osc.stop(0);
+        }
+        Entities.splice(i, 1);
+    });
+
     if (score > 0) {
         lastscore = score;
         score = 0;
     }
-    
+
     Buttons[0].Visible = false;
     Buttons[1].Visible = false;
     Buttons[2].Visible = false;
     Buttons[3].Visible = false;
     Buttons[5].Visible = false;
     Buttons[6].Visible = false;
-    
-    
+
+
     Buttons[4].Visible = true;
     Buttons[2].Visible = true;
-    Buttons[7].Visible = true;    
-    Buttons[8].Visible = true;   
+    Buttons[7].Visible = true;
+    Buttons[8].Visible = true;
     Buttons[9].Visible = true;
     Buttons[10].Visible = true;
     Buttons[11].Visible = true;
-    
+
     Buttons[10].Text.Value = "Score: " + lastscore;
-    
-    
+
+
 }
 
 function loadHighscores() {
     menu = true;
     highscores = true;
-    
+
     Buttons[0].Visible = false;
     Buttons[1].Visible = false;
     Buttons[2].Visible = false;
     Buttons[3].Visible = false;
-    
+
     Buttons[2].Visible = true;
     Buttons[4].Visible = true;
     Buttons[5].Visible = true;
     Buttons[6].Visible = true;
-    
+
     Buttons[12].Visible = true;
     Buttons[13].Visible = true;
     Buttons[14].Visible = true;
@@ -312,9 +319,9 @@ function loadHighscores() {
     Buttons[19].Visible = true;
     Buttons[20].Visible = true;
     Buttons[21].Visible = true;
-    
+
     Highscores.sort(compareScore);
-    
+
     if (typeof Highscores[0] !== "undefined") {
         Buttons[12].Text.Value = "1. " + Highscores[0].Name + " ::: " + Highscores[0].Score;
     }
@@ -357,19 +364,19 @@ function saveScore() {
         Name = "BadBreath";
     }
     var uScore = lastscore;
-    
+
     var HighscoreItem = {
         "Name": Name,
         "Score": uScore
     }
-    
+
     Highscores.push(HighscoreItem);
     Highscores.sort(compareScore);
-    
+
     var textFileAsBlob = new Blob(["var Highscores=JSON.parse('" + JSON.stringify(Highscores) + "');"], {
         type: 'text/plain'
     });
-    
+
     var downloadLink = document.createElement("a");
     downloadLink.download = "Highscore.json";
     downloadLink.innerHTML = "Download File";
@@ -391,7 +398,7 @@ function saveScore() {
     downloadLink.click();
 }
 
-function compareScore(a,b) {
+function compareScore(a, b) {
     if (a.Score > b.Score)
         return -1;
     if (a.Score < b.Score)
