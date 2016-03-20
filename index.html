@@ -2,24 +2,62 @@
 <html>
     <head>
         <title>HackJSY</title>
+        <!---
+            The pages CSS, it is quite sparse because basically everything is done in javascript
+            it does do the gradient thing though which is cool
+        -->
         <link rel='stylesheet' type='text/css' href='CSS/stylesheet.css'/>
     </head>
     <body>
+        <!--
+            This canvas is where the magic happens
+        -->
         <canvas id="scene" oncontextmenu="return false">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
+        <!-- 
+            JQuery is an external library to make modifying the DOM more... cross browser compatible.
+            I am mostly not using it, as most of my work is to do with the canvas, which JQuery was not made for.
+            But i am using it for things like, finding where on the page the canvas element is.
+            Its also used for a few other things, but realistically i can easily edit out its code, its just easier with certain things
+        -->
         <script type='text/javascript' src='JS/jquery.min.js'></script>
         
+        <!--
+            First we load our data files, these files contain the information that the game needs to run.
+            For example, Buttons.json stores all the buttons & text elements in the game
+            Models.json stores the games "Models". you might prefer to call them Images or Sprites, but it didnt really feel right to me
+            Audio.json stores the themetune, and if i had more time it would have probably stored other tunes aswell
+            Entities.json stores all of the base entities. Other entities that are shown are usually clones of those entities
+            Highscore.json stores the highscores. Due to the limitations of Javascript and the security features of modern browsers, i had to do this in a strange fashion.
+        -->
         <script type='text/javascript' src='Data/Buttons.json'></script>
         <script type='text/javascript' src='Data/Models.json'></script>
         <script type='text/javascript' src='Data/Audio.json'></script>
         <script type='text/javascript' src='Data/Entities.json'></script>
         <script type='text/javascript' src='Data/Highscore.json'></script>
         
+        <!--
+            Now we load the game code
+            I try to split the game code up into different files which are categorised based on what they do in the game
+            Because of the rush, i know i am not completely happy with how things are organised, but i am sure that would be understandable
+            
+            The order of the files is important, and i tend to have the... bulkier code at the bottom.
+        
+            Init.JS initialises the various variables that i need, these variables are global
+            Audio.JS initialises some of the variables required for audio. I have split this from Init.JS because i wanted to make audio toggable
+            KeyCodes.JS is a javascript file which stores all of the various keyboard keycodes, and makes them easy to reference with the Key class
+            Button.JS loads and handles data from Button.JSON. 
+            Atmosphere.JS is responsible for certain features to try to make the situation feel... spacey. For example, it adds these swooshes which are meant to represent stars, and stuff wizzing by... but its not too great
+            Entity.JS is responsible for loading and handling data from Entity.JSON. 
+            AI.JS is responsible for the spawning of Entity elements.
+            Engine.JS is the heart of the code, and basically where everything is
+            Main.JS is just.... its the player part of Engine.JS, like movement
+        -->
         <script type='text/javascript' src='JS/Init.js'></script>
+        <script type='text/javascript' src='JS/Audio.js'></script>
         <script type='text/javascript' src='JS/KeyCodes.js'></script>
         <script type='text/javascript' src='JS/Button.js'></script>
-        <script type='text/javascript' src='JS/Audio.js'></script>
         <script type='text/javascript' src='JS/Atmosphere.js'></script>
         <script type='text/javascript' src='JS/Entity.js'></script>
         <script type='text/javascript' src='JS/AI.js'></script>

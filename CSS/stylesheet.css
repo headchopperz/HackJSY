@@ -1,3 +1,6 @@
+/*
+    VT323 is licened under "Open Font OFL", and it has a blocky affect which i liked
+*/
 @import url(https://fonts.googleapis.com/css?family=VT323);
 
 canvas {
@@ -5,13 +8,24 @@ canvas {
     background-color: #090909;
     background-repeat:no-repeat;
     
-    background: #535353; /* Old browsers */
+    
+    /*
+        This is the gradient that we are flying away from, its meant to represent the
+        atmosphere of earth or something
+    */
+    background: #535353;
     background: -moz-linear-gradient(left, #535353 0%, #090909 41%, #000000 51%);
     background: -webkit-linear-gradient(left, #535353 0%,#090909 41%, #000000 51%);
     background: linear-gradient(to right, #535353 0%,#090909 41%, #000000 51%);
     
     display:block;
     
+    
+    /*
+        So this below code is either a terrible idea, or a good idea
+        It centers the element, and always has it center no matter the size of the window
+        It will have problems though if the users monitor is just too small
+    */
     position:absolute;
     top:50%;
     left:50%;
@@ -27,6 +41,9 @@ canvas {
 
 html {
     background-color:black;
+    /*
+        VT323 is licened under "Open Font OFL", and it has a blocky affect which i liked
+    */
     font-family:VT323;
 }
 
