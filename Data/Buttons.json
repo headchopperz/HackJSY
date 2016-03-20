@@ -13,7 +13,7 @@ var ButtonJSON = `
         "Description": "Play Button",
         "Visible": true,
         "X": 600,
-        "Y": 250,
+        "Y": 225,
         "Width": 300,
         "Height": 100,
         "Parent": null,
@@ -26,7 +26,7 @@ var ButtonJSON = `
         },
         "Outline": {
             "On": true,
-            "Colour": "Black",
+            "Colour": "grey",
             "Pressed": "White"
         },
         "Text": {
@@ -36,8 +36,8 @@ var ButtonJSON = `
             "Pressed": "Black",
             "Outline": false,
             "Value": "Play Game",
-            "Font": "Georgia",
-            "Size": 42
+            "Font": "VT323,Georgia",
+            "Size": 62
         },
         "TextBox": {
             "On": false,
@@ -46,7 +46,119 @@ var ButtonJSON = `
             "forceInt": false,
             "forcePositive": true
         },
-        "onClick": "playGame"
+        "onRelease": "playGame"
+    }, {
+        "Description": "Highscores",
+        "Visible": true,
+        "X": 600,
+        "Y": 350,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": true,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": true,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "Black",
+            "Outline": false,
+            "Value": "Highscores",
+            "Font": "VT323,Georgia",
+            "Size": 62
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true
+        },
+        "onClick": "showHighscores"
+    }, {
+        "Description": "Title",
+        "Visible": true,
+        "X": 600,
+        "Y": 75,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "Alien Escape",
+            "Font": "VT323,Georgia",
+            "Size": 102
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true
+        }
+    }, {
+        "Description": "Title",
+        "Visible": true,
+        "X": 600,
+        "Y": 450,
+        "Width": 300,
+        "Height": 100,
+        "Parent": null,
+        "Pressed": false,
+        "Centered": true,
+        "Fill": {
+            "On": false,
+            "Colour": "Black",
+            "Pressed": "White"
+        },
+        "Outline": {
+            "On": false,
+            "Colour": "grey",
+            "Pressed": "White"
+        },
+        "Text": {
+            "On": true,
+            "Center": true,
+            "Colour": "White",
+            "Pressed": "White",
+            "Outline": false,
+            "Value": "Can you escape earth and safely navigate the asteroids?",
+            "Font": "VT323,Georgia",
+            "Size": 24
+        },
+        "TextBox": {
+            "On": false,
+            "Value": "",
+            "_oldValue": "",
+            "forceInt": false,
+            "forcePositive": true
+        }
     }
 ]
 `;

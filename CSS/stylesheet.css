@@ -1,12 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=VT323);
+
 canvas {
     border: 1px dotted white;
     background-color: #090909;
     background-repeat:no-repeat;
     
     background: #535353; /* Old browsers */
-    background: -moz-linear-gradient(left, #535353 0%, #090909 61%);
-    background: -webkit-linear-gradient(left, #535353 0%,#090909 61%);
-    background: linear-gradient(to right, #535353 0%,#090909 61%);
+    background: -moz-linear-gradient(left, #535353 0%, #090909 41%, #000000 51%);
+    background: -webkit-linear-gradient(left, #535353 0%,#090909 41%, #000000 51%);
+    background: linear-gradient(to right, #535353 0%,#090909 41%, #000000 51%);
     
     display:block;
     
@@ -25,6 +27,7 @@ canvas {
 
 html {
     background-color:black;
+    font-family:VT323;
 }
 
 body {

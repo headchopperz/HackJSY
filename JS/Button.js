@@ -29,7 +29,7 @@ var _button = {
         Pressed: "white", //Colour when pressed
         Outline: false,
         Value: "...", //What does the text say?
-        Font: "Georgia",
+        Font: "VT323,Georgia",
         Size: 16 //In pixels (px)
     },    
     TextBox: {//Whether or not the text is modifiable, Requires Text
@@ -170,7 +170,7 @@ function drawButtons(dt) {
 
             if (e.Text.On) {
                 context.font = e.Text.Size + "px " + e.Text.Font;
-                if (e.Text.Center)
+                if (e.Text.Center) 
                     context.textAlign = 'center';
                 else
                     context.textAlign = 'left';
@@ -180,7 +180,7 @@ function drawButtons(dt) {
                     textValue += e.TextBox.Value;
                 
                 context.fillStyle = (e.Pressed) ? e.Text.Pressed : e.Text.Colour;
-                context.fillText(textValue, X + (e.Width / 2), Y + (e.Height / 2) + (e.Text.Size / 2));
+                context.fillText(textValue, X + (e.Width / 2), Y + (e.Height / 2) + (e.Text.Size / 4));
             }
 
         }

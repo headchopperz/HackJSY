@@ -121,7 +121,7 @@ function playGame(e) {
 
 function drawdebug() {
     context.textAlign = 'left';
-    context.font = "16px georgia";
+    context.font = "16px VT323,georgia";
     context.fillStyle = "white";
     context.fillText("X: " + _mouse.X, 2, 15);
     context.fillText("Y: " + _mouse.Y, 2, 35);
@@ -131,7 +131,7 @@ function showScore() {
     var now = Date.now();
 
     context.textAlign = 'right';
-    context.font = "24px monospace";
+    context.font = "24px VT323,monospace,georgia";
     context.fillStyle = "white";
     context.fillText(getScore(), scene.Viewport.Width - 15, 30);
 }
