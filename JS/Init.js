@@ -49,6 +49,8 @@ var SelectedButton = null;
 var GameStart = Date.now();
 var cTime = Date.now();
 var score = 0;
+var debug = false;
+var debughasrisenkeys = true;
 
 var audio = {
     ctx: null,

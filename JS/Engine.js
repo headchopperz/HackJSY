@@ -83,10 +83,10 @@ function main() {
         if (!menu) {
             //checkmovementetc
             controlEntities(dt);
-            checkCollisions(dt);
             sync(dt);
             drawAtmosphere(dt);
             drawEntities(dt);
+            checkCollisions(dt);
             mainLoop(dt);
             showScore(dt);
         } else {
@@ -97,7 +97,9 @@ function main() {
             drawButtons(dt);
         }
 
-        drawdebug();
+        if (debug) {
+            drawdebug();
+        }
     }
 
     lastTime = now;
@@ -180,6 +182,7 @@ $(document).ready(function () {
         if (keyIndex !== false) {
             keyArray.splice(keyIndex, 1);
         }
+        debughasrisenkeys = true;
     });
 
     canvas.addEventListener("mousedown", function (e) {

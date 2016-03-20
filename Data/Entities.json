@@ -146,7 +146,7 @@ var EntityJSON = `
         "old_Y": 0,        
         "ModelSet": 4,
         "CurrentModel": 0,
-        "AIType": 0,
+        "AIType": 4,
         "Group": 0,
         "Hardness": 0,
         "LastModelUpdate": 0,
