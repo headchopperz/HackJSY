@@ -145,24 +145,26 @@ function sync(dt) {
 
 function mouseCheck(e) {
     if (_mouse.Down) {
-        Buttons.forEach(function (e) {
-            if ((e.Visible == true) && (e._onClick !== null) && (!e.Pressed)) {
-                var X = e.X;
-                var Y = e.Y;
+        if (menu) {
+            Buttons.forEach(function (e) {
+                if ((e.Visible == true) && (e._onClick !== null) && (!e.Pressed)) {
+                    var X = e.X;
+                    var Y = e.Y;
 
-                if (e.Centered) {
-                    X = e.X - (e.Width / 2);
-                    Y = e.Y - (e.Height / 2);
-                }
+                    if (e.Centered) {
+                        X = e.X - (e.Width / 2);
+                        Y = e.Y - (e.Height / 2);
+                    }
 
-                if ((_mouse.X < X + e.Width) &&
-                        (_mouse.X > X) &&
-                        (_mouse.Y < Y + e.Height) &&
-                        (_mouse.Y > Y)) {
-                    e._onClick();
+                    if ((_mouse.X < X + e.Width) &&
+                            (_mouse.X > X) &&
+                            (_mouse.Y < Y + e.Height) &&
+                            (_mouse.Y > Y)) {
+                        e._onClick();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }
 
