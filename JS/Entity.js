@@ -301,12 +301,12 @@ function handleCollision(e1, e2) {
     if (e1.Hardness < e2.Hardness) {
         killEntity(e1);
         if (e2.AIType === AI_Type.Bullet) {
-            killEntity(e2);
+            killEntity(e2, false);
         }
     } else {
         killEntity(e2);
         if (e1.AIType === AI_Type.Bullet) {
-            killEntity(e1);
+            killEntity(e1, false);
         }
     }
 }
