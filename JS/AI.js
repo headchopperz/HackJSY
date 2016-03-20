@@ -45,7 +45,7 @@ function handleAISpawning(dt) {
         var ID = Entities.push(JSON.parse(JSON.stringify(Entities[2]))) - 1;
         Entities[ID].State = 1;
         Entities[ID].X = scene.Viewport.Width;
-        Entities[ID].Y = Math.random() * scene.Viewport.Height;
+        Entities[ID].Y = Math.random() * (scene.Viewport.Height - (8 * scene.Tile_Size));
         _aiSpawn.lastBoulder = now;
     }
 }
